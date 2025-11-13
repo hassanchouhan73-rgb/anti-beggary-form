@@ -98,9 +98,10 @@
       <input type="text" class="form-control" maxlength="13" placeholder="Without dashes" name="cnic">
     </div>
     <div class="col-md-4">
-      <label>Photo</label>
-      <input type="file" class="form-control" accept="image/*" capture="camera" name="photo" required>
-    </div>
+  <label>Photo</label>
+  <input type="file" class="form-control" accept="image/*" capture="camera" name="photo" id="photoInput" required>
+  <img id="photoPreview" src="" alt="Image Preview" style="display:none; margin-top:10px; max-width:100%; height:auto;">
+</div>
     <div class="col-md-4">
       <label>Biometric Capture (Fingerprint / Face)</label>
       <input type="file" class="form-control" accept="image/*" name="biometric">
@@ -243,7 +244,25 @@
   }
 
   fetchLocation();
+  const photoInput = document.getElementById('photoInput');
+  const photoPreview = document.getElementById('photoPreview');
+
+  photoInput.addEventListener('change', function() {
+    const file = this.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        photoPreview.src = e.target.result;
+        photoPreview.style.display = 'block';
+      }
+      reader.readAsDataURL(file);
+    } else {
+      photoPreview.src = '';
+      photoPreview.style.display = 'none';
+    }
+  });
 </script>
 </body>
 </html>
+
 
