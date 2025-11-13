@@ -68,8 +68,46 @@
   </div>
 
 <form class="card p-4" method="POST" enctype="multipart/form-data" action="save_record.php">
+<!-- Section 1: General Information -->
+  <div class="section-title"><i class="bi bi-geo-alt me-2"></i>Capture Information</div>
+  <div class="row g-3">
+    <div class="col-md-4">
+      <label>Date & Time of Capture</label>
+      <input type="datetime-local" class="form-control" id="capture_datetime" name="capture_datetime" readonly>
+    </div>
+    <div class="col-md-4">
+      <label>Location (Auto)</label>
+      <input type="text" class="form-control" id="location_field" name="capture_location" readonly placeholder="Fetching location..." readonly>
+      <div class="small text-muted mt-1" id="location_status"></div>
+    </div>
+        <div class="col-md-4">
+      <label>Place</label>
+      <input type="text" class="form-control" placeholder="Enter district" name="Place">
+    </div>
+        <div class="col-md-4">
+      <label>Police Station</label>
+      <input type="text" class="form-control" placeholder="Enter district" name="police_station">
+    </div>
+    <div class="col-md-4">
+      <label>District</label>
+      <input type="text" class="form-control" placeholder="Enter district" name="capture_district">
+    </div>
+    <div class="col-md-4">
+      <label>Capturing Authority</label>
+      <select class="form-select" name="capturing_authority">
+        <option value="">Select</option>
+        <option>Police</option>
+        <option>Social Welfare</option>
+        <option>CPWB</option>
+        <option>Traffic Police</option>
+        <option>Intelligence</option>
+      </select>
+    </div>
+  </div>
 
-  <!-- Section 1: Personal Identification -->
+  <hr class="my-4">
+
+  <!-- Section 1: General Information -->
   <div class="section-title"><i class="bi bi-person-lines-fill me-2"></i>Personal Identification</div>
   <div class="row g-3">
     <div class="col-md-4">
@@ -128,38 +166,7 @@
   </div>
 
   <hr class="my-4">
-
-  <!-- Section 3: Capture Information -->
-  <div class="section-title"><i class="bi bi-geo-alt me-2"></i>Capture Information</div>
-  <div class="row g-3">
-    <div class="col-md-4">
-      <label>Date & Time of Capture</label>
-      <input type="datetime-local" class="form-control" id="capture_datetime" name="capture_datetime" readonly>
-    </div>
-    <div class="col-md-4">
-      <label>Location (Auto-fetched)</label>
-      <input type="text" class="form-control" id="location_field" name="capture_location" readonly placeholder="Fetching location...">
-      <div class="small text-muted mt-1" id="location_status"></div>
-    </div>
-    <div class="col-md-4">
-      <label>District of Capture</label>
-      <input type="text" class="form-control" placeholder="Enter district" name="capture_district">
-    </div>
-    <div class="col-md-4">
-      <label>Capturing Authority</label>
-      <select class="form-select" name="capturing_authority">
-        <option value="">Select</option>
-        <option>Police</option>
-        <option>Social Welfare</option>
-        <option>CPWB</option>
-        <option>Traffic Police</option>
-        <option>Intelligence</option>
-      </select>
-    </div>
-  </div>
-
-  <hr class="my-4">
-
+  
   <!-- Section 4: Additional Information -->
   <div class="section-title"><i class="bi bi-info-circle me-2"></i>Additional Information</div>
   <div class="row g-3">
@@ -264,5 +271,6 @@
 </script>
 </body>
 </html>
+
 
 
