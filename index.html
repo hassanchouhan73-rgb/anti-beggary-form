@@ -105,9 +105,18 @@
 
   <hr class="my-4">
 
-  <!-- Section 1: General Information -->
-  <div class="section-title"><i class="bi bi-person-lines-fill me-2"></i>Personal Identification</div>
+  <!-- Section 1: Bagger's Profile -->
+  <div class="section-title"><i class="bi bi-person-lines-fill me-2"></i>Bagger's Profile</div>
   <div class="row g-3">
+        <div class="col-md-4">
+  <label>Photo</label>
+  <input type="file" class="form-control" accept="image/*" capture="camera" name="photo" id="photoInput" required>
+  <img id="photoPreview" src="" alt="Image Preview" style="display:none; margin-top:10px; max-width:100%; height:auto;">
+</div>
+    <div class="col-md-4">
+      <label>Biometric Capture (Fingerprint / Face)</label>
+      <input type="file" class="form-control" accept="image/*" name="biometric">
+    </div>
     <div class="col-md-4">
       <label>Full Name</label>
       <input type="text" class="form-control" placeholder="Enter full name" name="full_name" required>
@@ -132,15 +141,6 @@
     <div class="col-md-4">
       <label>CNIC Number (if available)</label>
       <input type="text" class="form-control" maxlength="13" placeholder="Without dashes" name="cnic">
-    </div>
-    <div class="col-md-4">
-  <label>Photo</label>
-  <input type="file" class="form-control" accept="image/*" capture="camera" name="photo" id="photoInput" required>
-  <img id="photoPreview" src="" alt="Image Preview" style="display:none; margin-top:10px; max-width:100%; height:auto;">
-</div>
-    <div class="col-md-4">
-      <label>Biometric Capture (Fingerprint / Face)</label>
-      <input type="file" class="form-control" accept="image/*" name="biometric">
     </div>
   </div>
 
@@ -269,6 +269,7 @@
 </script>
 </body>
 </html>
+
 
 
 
