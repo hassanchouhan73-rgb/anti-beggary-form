@@ -118,6 +118,10 @@
       <input type="file" class="form-control" accept="image/*" name="biometric">
     </div>
     <div class="col-md-4">
+      <label>CNIC Number (if available)</label>
+      <input type="text" class="form-control" maxlength="13" placeholder="Without dashes" name="cnic">
+    </div>
+    <div class="col-md-4">
       <label>Full Name</label>
       <input type="text" class="form-control" placeholder="Enter full name" name="full_name" required>
     </div>
@@ -138,16 +142,7 @@
       <label>Age / DOB</label>
       <input type="text" class="form-control" placeholder="e.g. 35 or 12-03-1990" name="age_or_dob">
     </div>
-    <div class="col-md-4">
-      <label>CNIC Number (if available)</label>
-      <input type="text" class="form-control" maxlength="13" placeholder="Without dashes" name="cnic">
-    </div>
   </div>
-
-  <hr class="my-4">
-
-  <!-- Section 2: Residential Information -->
-  <div class="section-title"><i class="bi bi-house-door me-2"></i>Residential Information</div>
   <div class="row g-3">
     <div class="col-md-6">
       <label>Permanent Address</label>
@@ -162,11 +157,6 @@
       <input type="text" class="form-control" placeholder="Enter district/division" name="origin_district">
     </div>
   </div>
-
-  <hr class="my-4">
-  
-  <!-- Section 4: Additional Information -->
-  <div class="section-title"><i class="bi bi-info-circle me-2"></i>Additional Information</div>
   <div class="row g-3">
     <div class="col-md-4">
       <label>Linked to Beggary Mafia / Group?</label>
@@ -269,6 +259,7 @@
 </script>
 </body>
 </html>
+
 
 
 
