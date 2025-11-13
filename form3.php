@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anti-Beggary Record Entry</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #eef2f7;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .page-header {
+      background: linear-gradient(90deg, #1e40af, #3949ab);
+      color: white;
+      padding: 20px 30px;
+      border-radius: 12px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+      margin-bottom: 30px;
+    }
+    .card {
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      background-color: white;
+    }
+    .section-title {
+      font-weight: 600;
+      font-size: 18px;
+      border-left: 5px solid #3949ab;
+      padding-left: 10px;
+      margin-bottom: 10px;
+      color: #3949ab;
+    }
+    label {
+      font-weight: 500;
+      color: #333;
+    }
+    .form-control, .form-select {
+      border-radius: 10px;
+      border: 1px solid #ced4da;
+      box-shadow: none !important;
+    }
+    .form-control:focus, .form-select:focus {
+      border-color: #3949ab;
+      box-shadow: 0 0 0 0.15rem rgba(57,73,171,0.25);
+    }
+    .btn-primary {
+      background-color: #3949ab;
+      border: none;
+      border-radius: 10px;
+      font-weight: 500;
+    }
+    .btn-primary:hover {
+      background-color: #2e36a2;
+    }
+  </style>
+</head>
+
+<body>
+
+
+<div class="container py-4">
+  <div class="page-header">
+    <h3 class="mb-1"><i class="bi bi-person-bounding-box me-2"></i>Anti-Beggary Record Entry Form</h3>
+    <p class="mb-0">Enter verified details of apprehended beggars. All fields should be filled carefully.</p>
+  </div>
+
+<form class="card p-4" method="POST" enctype="multipart/form-data" action="save_record.php">
+
+  <!-- Section 1: Personal Identification -->
+  <div class="section-title"><i class="bi bi-person-lines-fill me-2"></i>Personal Identification</div>
+  <div class="row g-3">
+    <div class="col-md-4">
+      <label>Full Name</label>
+      <input type="text" class="form-control" placeholder="Enter full name" name="full_name" required>
+    </div>
+    <div class="col-md-4">
+      <label>Father’s / Husband’s Name</label>
+      <input type="text" class="form-control" placeholder="Enter father/husband name" name="father_husband_name">
+    </div>
+    <div class="col-md-2">
+      <label>Gender</label>
+      <select class="form-select" name="gender">
+        <option value="">Select</option>
+        <option>Male</option>
+        <option>Female</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+      <label>Age / DOB</label>
+      <input type="text" class="form-control" placeholder="e.g. 35 or 12-03-1990" name="age_or_dob">
+    </div>
+    <div class="col-md-4">
+      <label>CNIC Number (if available)</label>
+      <input type="text" class="form-control" maxlength="13" placeholder="Without dashes" name="cnic">
+    </div>
+    <div class="col-md-4">
+      <label>Photo</label>
+      <input type="file" class="form-control" accept="image/*" name="photo">
+    </div>
+    <div class="col-md-4">
+      <label>Biometric Capture (Fingerprint / Face)</label>
+      <input type="file" class="form-control" accept="image/*" name="biometric">
+    </div>
+  </div>
+
+  <hr class="my-4">
+
+  <!-- Section 2: Residential Information -->
+  <div class="section-title"><i class="bi bi-house-door me-2"></i>Residential Information</div>
+  <div class="row g-3">
+    <div class="col-md-6">
+      <label>Permanent Address</label>
+      <textarea class="form-control" rows="2" placeholder="Enter permanent address" name="permanent_address"></textarea>
+    </div>
+    <div class="col-md-6">
+      <label>Present Address</label>
+      <textarea class="form-control" rows="2" placeholder="Enter current address" name="present_address"></textarea>
+    </div>
+    <div class="col-md-4">
+      <label>City / District / Division of Origin</label>
+      <input type="text" class="form-control" placeholder="Enter district/division" name="origin_district">
+    </div>
+  </div>
+
+  <hr class="my-4">
+
+  <!-- Section 3: Capture Information -->
+  <div class="section-title"><i class="bi bi-geo-alt me-2"></i>Capture Information</div>
+  <div class="row g-3">
+    <div class="col-md-4">
+      <label>Date & Time of Capture</label>
+      <input type="datetime-local" class="form-control" id="capture_datetime" name="capture_datetime" readonly>
+    </div>
+    <div class="col-md-4">
+      <label>Location (Auto-fetched)</label>
+      <input type="text" class="form-control" id="location_field" name="capture_location" readonly placeholder="Fetching location...">
+      <div class="small text-muted mt-1" id="location_status"></div>
+    </div>
+    <div class="col-md-4">
+      <label>District of Capture</label>
+      <input type="text" class="form-control" placeholder="Enter district" name="capture_district">
+    </div>
+    <div class="col-md-4">
+      <label>Capturing Authority</label>
+      <select class="form-select" name="capturing_authority">
+        <option value="">Select</option>
+        <option>Police</option>
+        <option>Social Welfare</option>
+        <option>CPWB</option>
+        <option>Traffic Police</option>
+        <option>Intelligence</option>
+      </select>
+    </div>
+  </div>
+
+  <hr class="my-4">
+
+  <!-- Section 4: Additional Information -->
+  <div class="section-title"><i class="bi bi-info-circle me-2"></i>Additional Information</div>
+  <div class="row g-3">
+    <div class="col-md-4">
+      <label>Linked to Beggary Mafia / Group?</label>
+      <select class="form-select" name="linked_mafia">
+        <option>No</option>
+        <option>Yes</option>
+      </select>
+    </div>
+    <div class="col-md-8">
+      <label>If Yes, Provide Details</label>
+      <input type="text" class="form-control" placeholder="Enter details if applicable" name="mafia_details">
+    </div>
+    <div class="col-md-4">
+      <label>Type of Beggary</label>
+      <select class="form-select" name="beggary_type">
+        <option value="">Select</option>
+        <option>Child</option>
+        <option>Woman</option>
+        <option>Disabled</option>
+        <option>Organized Gang</option>
+        <option>Individual</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <label>Previous Record</label>
+      <select class="form-select" name="previous_record">
+        <option>First Time</option>
+        <option>Repeat Offender</option>
+        <option>Released Earlier</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <label>Additional Notes</label>
+      <input type="text" class="form-control" placeholder="Remarks or observations" name="additional_notes">
+    </div>
+  </div>
+
+  <!-- Submit Button -->
+  <div class="text-end mt-4">
+    <button type="submit" class="btn btn-primary px-4 py-2">
+      <i class="bi bi-save me-2"></i>Save Record
+    </button>
+  </div>
+
+</form>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Auto-fill date and time
+  document.addEventListener("DOMContentLoaded", () => {
+    const now = new Date();
+    const formatted = now.toISOString().slice(0,16); // Format for datetime-local input
+    document.getElementById("capture_datetime").value = formatted;
+  });
+
+  // Auto-fetch location
+  function fetchLocation() {
+    const locationField = document.getElementById("location_field");
+    const status = document.getElementById("location_status");
+
+    if (!navigator.geolocation) {
+      status.innerText = "Geolocation not supported by your browser.";
+      return;
+    }
+
+    status.innerText = "Fetching location...";
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        const { latitude, longitude } = pos.coords;
+        locationField.value = `${latitude.toFixed(6)}, ${longitude.toFixed(6)}`;
+        status.innerText = "Location fetched successfully.";
+      },
+      (err) => {
+        status.innerText = "Unable to fetch location. Please allow location access.";
+        locationField.value = "";
+      }
+    );
+  }
+
+  fetchLocation();
+</script>
+</body>
+</html>
